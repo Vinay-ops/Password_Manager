@@ -3589,6 +3589,7 @@ drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
 drawable logo_background
 drawable logo_background_white
+drawable logo_password
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle

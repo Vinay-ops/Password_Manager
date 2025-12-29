@@ -16,6 +16,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable logo_background
 drawable logo_background_white
+drawable logo_password
 drawable pin_dot_empty
 drawable pin_dot_filled
 id appTitle
