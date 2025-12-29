@@ -17,18 +17,16 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 /**
- * storageActivity2 - View Stored Passwords Screen
- * Shows all saved passwords in cards
- * User can click "Show Password" to see the actual password
+ * storageActivity2
  */
 public class storageActivity2 extends AppCompatActivity {
 
-    // UI elements
-    private LinearLayout passwordsContainer; // Container to hold all password cards
-    private TextView emptyMessage; // Message shown when no passwords saved
-    private MaterialButton backButton; // Button to go back
+    // UI
+    private LinearLayout passwordsContainer;
+    private TextView emptyMessage;
+    private MaterialButton backButton;
     
-    // Storage - SharedPreferences to read saved passwords
+
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -37,92 +35,79 @@ public class storageActivity2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_storage2);
         
-        // Handle system bars (notch, status bar, etc.)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Initialize SharedPreferences to read saved passwords
+        // saves password
         sharedPreferences = getSharedPreferences("PasswordManager", MODE_PRIVATE);
 
-        // Find UI elements by their IDs
+
         passwordsContainer = findViewById(R.id.passwordsContainer);
         emptyMessage = findViewById(R.id.emptyMessage);
         backButton = findViewById(R.id.backButton);
 
-        // Set up back button - when clicked, go back to previous screen
+     // goes to the add password and username screen
         if (backButton != null) {
             backButton.setClickable(true);
             backButton.setFocusable(true);
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish(); // Close this activity and go back
+                    finish();
                 }
             });
         }
 
-        // Load and display all saved passwords
+
         loadPasswords();
     }
 
-    /**
-     * Called when activity becomes visible again
-     * Reloads passwords in case a new one was added
-     */
+
     @Override
     protected void onResume() {
         super.onResume();
-        // Reload passwords when activity resumes (in case new password was added)
+
         loadPasswords();
     }
 
-    /**
-     * Loads all saved passwords from SharedPreferences and displays them
-     */
     private void loadPasswords() {
-        // Clear any existing password cards
+
         passwordsContainer.removeAllViews();
 
-        // Get how many passwords we have saved
+
         int passwordCount = sharedPreferences.getInt("password_count", 0);
 
         if (passwordCount == 0) {
-            // No passwords saved yet - show empty message
+
             emptyMessage.setVisibility(View.VISIBLE);
             passwordsContainer.setVisibility(View.GONE);
         } else {
-            // We have passwords - hide empty message and show them
+
             emptyMessage.setVisibility(View.GONE);
             passwordsContainer.setVisibility(View.VISIBLE);
 
-            // Loop through all saved passwords (from 1 to passwordCount)
+
             for (int i = 1; i <= passwordCount; i++) {
-                // Get saved data for password number i
+
                 String website = sharedPreferences.getString("website_" + i, "");
                 String username = sharedPreferences.getString("username_" + i, "");
                 String password = sharedPreferences.getString("password_" + i, "");
 
-                // Only create card if all fields have data
+
                 if (!website.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
-                    // Create a card to display this password
+
                     MaterialCardView card = createPasswordCard(website, username, password, i);
-                    passwordsContainer.addView(card); // Add card to the container
+                    passwordsContainer.addView(card);
                 }
             }
         }
     }
 
-    /**
-     * Creates a card to display one password
-     * @param website The website/app name
-     * @param username The username/email
-     * @param password The password (hidden by default)
-     * @param index The password number (not used, but kept for future use)
-     * @return A MaterialCardView showing the password info
-     */
+
     private MaterialCardView createPasswordCard(String website, String username, String password, int index) {
         // Create a card (the container for this password)
         MaterialCardView card = new MaterialCardView(this);

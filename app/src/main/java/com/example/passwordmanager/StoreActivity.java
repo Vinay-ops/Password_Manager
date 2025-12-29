@@ -19,17 +19,16 @@ import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * StoreActivity - Save Password Screen
- * User can enter website, username, and password to save
- * Uses SharedPreferences for simple storage (no database needed)
+
  */
 public class StoreActivity extends AppCompatActivity {
 
-    // UI elements - input fields
+    // UI
     private TextInputEditText websiteEditText;
     private TextInputEditText usernameEditText;
     private TextInputEditText passwordEditText;
     
-    // UI elements - layouts (for showing errors)
+
     private TextInputLayout websiteInputLayout;
     private TextInputLayout usernameInputLayout;
     private TextInputLayout passwordInputLayout;
