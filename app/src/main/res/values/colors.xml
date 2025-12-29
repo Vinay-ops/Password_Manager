@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Login UI Colors -->
+    <color name="primary_blue">#6366F1</color>
+    <color name="primary_blue_dark">#4F46E5</color>
+    <color name="primary_blue_light">#818CF8</color>
+    <color name="background_light">#F8F9FA</color>
+    <color name="text_primary">#1F2937</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="input_background">#FFFFFF</color>
+    <color name="divider">#E5E7EB</color>
+</resources>
+
