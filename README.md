@@ -65,6 +65,7 @@ Advanced security features like biometric login, encryption key management, and 
 - **Authentication:** PIN-based login  
 
 ---
+ ```
 PasswordManager/
 ├── activities/
 │ ├── SplashActivity
@@ -76,7 +77,7 @@ PasswordManager/
 ├── res/
 ├── README.md
 └── AndroidManifest.xml
-
+ ```
 
 ---
 
