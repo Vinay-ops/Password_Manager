@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.passwordmanager.app-mergeDebugResources-37:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.example.passwordmanager.app-mergeDebugResources-39:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\c04910da1863cc3c9b3955c641a39788\\transformed\\material-1.13.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\50498d6fed72544d2327fd741807fbfe\\transformed\\material-1.13.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.passwordmanager.app-mergeDebugResources-37:/values-v23/values-v23.xml",
+            "outputFile": "com.example.passwordmanager.app-mergeDebugResources-39:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\abb0b02fd1a67d186ec51c43a224b382\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\7f1b5038e5d85ac2d227ba68d4d1f879\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\c04910da1863cc3c9b3955c641a39788\\transformed\\material-1.13.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\50498d6fed72544d2327fd741807fbfe\\transformed\\material-1.13.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\ee2b5281359f24f54ca29f8a8a8def43\\transformed\\appcompat-1.7.1\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\e55b8e970444caaed41ed6a856564a5e\\transformed\\appcompat-1.7.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

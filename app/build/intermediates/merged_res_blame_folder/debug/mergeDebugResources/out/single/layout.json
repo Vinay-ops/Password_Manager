@@ -1,22 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-mergeDebugResources-38:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-main-41:\\layout\\activity_login.xml"
+        "merged": "com.example.passwordmanager.app-mergeDebugResources-40:/layout/activity_storage2.xml",
+        "source": "com.example.passwordmanager.app-main-43:/layout/activity_storage2.xml"
     },
     {
-        "merged": "com.example.passwordmanager.app-mergeDebugResources-38:/layout/activity_login.xml",
-        "source": "com.example.passwordmanager.app-main-41:/layout/activity_login.xml"
+        "merged": "com.example.passwordmanager.app-mergeDebugResources-40:/layout/activity_store.xml",
+        "source": "com.example.passwordmanager.app-main-43:/layout/activity_store.xml"
     },
     {
-        "merged": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-mergeDebugResources-38:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-main-41:\\layout\\activity_main.xml"
+        "merged": "com.example.passwordmanager.app-mergeDebugResources-40:/layout/activity_main.xml",
+        "source": "com.example.passwordmanager.app-main-43:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-mergeDebugResources-38:\\layout\\activity_store.xml",
-        "source": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-main-41:\\layout\\activity_store.xml"
-    },
-    {
-        "merged": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-mergeDebugResources-38:\\layout\\activity_storage2.xml",
-        "source": "C:\\Users\\Vinay Bhogal\\.gradle\\daemon\\8.13\\com.example.passwordmanager.app-main-41:\\layout\\activity_storage2.xml"
+        "merged": "com.example.passwordmanager.app-mergeDebugResources-40:/layout/activity_login.xml",
+        "source": "com.example.passwordmanager.app-main-43:/layout/activity_login.xml"
     }
 ]

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.passwordmanager.app-mergeDebugResources-37:/values-v17/values-v17.xml",
+            "outputFile": "com.example.passwordmanager.app-mergeDebugResources-39:/values-v17/values-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\ee2b5281359f24f54ca29f8a8a8def43\\transformed\\appcompat-1.7.1\\res\\values-v17\\values-v17.xml",
+                    "source": "C:\\Users\\Vinay Bhogal\\.gradle\\caches\\8.13\\transforms\\e55b8e970444caaed41ed6a856564a5e\\transformed\\appcompat-1.7.1\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
