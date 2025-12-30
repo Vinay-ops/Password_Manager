@@ -86,16 +86,16 @@ PasswordManager/
 # 📸 App Screenshots
 
 ### 🚀 Splash Screen
-![Splash Screen](screenshots/splash.png)
+![Splash Screen](screenshots/splash.jpg)
 
 ### 🔢 PIN Login Screen
-![PIN Login Screen](screenshots/login.png)
+![PIN Login Screen](screenshots/login.jpg)
 
 ### 📂 Saved Passwords Screen
-![Saved Passwords Screen](screenshots/dashboard.png)
+![Saved Passwords Screen](screenshots/dashboard.jpg)
 
 ### ➕ Add Password Screen
-![Add Password Screen](screenshots/add_password.png)
+![Add Password Screen](screenshots/stored_passwords.jpg)
 
 ---
 
