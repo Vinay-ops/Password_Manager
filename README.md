@@ -83,19 +83,22 @@ PasswordManager/
 
 ---
 
-# 📸 App Screenshots
+## 📸 App Screenshots
 
-### 🚀 Splash Screen
-![Splash Screen](Screenshot/splash.jpeg)
+<p align="center">
+  <img src="Screenshot/splash.jpeg" width="200" />
+  <img src="Screenshot/login.png" width="200" />
+  <img src="Screenshot/dashboard.jpeg" width="200" />
+  <img src="Screenshot/stored_passwords.jpeg" width="200" />
+</p>
 
-### 🔢 PIN Login Screen
-![PIN Login Screen](Screenshot/login.png)
+<p align="center">
+  <b>Splash Screen</b> &nbsp;&nbsp;&nbsp;
+  <b>PIN Login</b> &nbsp;&nbsp;&nbsp;
+  <b>Dashboard</b> &nbsp;&nbsp;&nbsp;
+  <b>Add Password</b>
+</p>
 
-### 📂 Saved Passwords Screen
-![Saved Passwords Screen](Screenshot/dashboard.jpeg)
-
-### ➕ Add Password Screen
-![Add Password Screen](Screenshot/stored_passwords.jpeg)
 
 ---
 
@@ -170,6 +173,7 @@ View or manage saved credentials securely
 
 Vinay Bhogal
 Student Developer | Android App Development
+
 
 
 
