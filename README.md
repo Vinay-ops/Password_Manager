@@ -94,7 +94,7 @@ PasswordManager/
 
 ---
 
-🧪 Usage
+## 🧪 Usage
 
 Launch the app
 
@@ -104,7 +104,9 @@ Add new passwords
 
 View or manage saved credentials securely
 
-🔮 Future Enhancements
+---
+
+## 🔮 Future Enhancements
 
 🔐 Fingerprint / Face ID login
 
@@ -118,7 +120,8 @@ View or manage saved credentials securely
 
 ---
 
-🧪 Usage
+
+## 🧪 Usage
 
 Launch the app
 
@@ -128,7 +131,10 @@ Add new passwords
 
 View or manage saved credentials securely
 
-🔮 Future Enhancements
+---
+
+
+## 🔮 Future Enhancements
 
 🔐 Fingerprint / Face ID login
 
@@ -141,10 +147,11 @@ View or manage saved credentials securely
 ⏱️ Auto-lock after inactivity
   
 ---
-👤 Author
+## 👤 Author
 
 Vinay Bhogal
 Student Developer | Android App Development
+
 
 
 
