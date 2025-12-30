@@ -84,6 +84,7 @@ PasswordManager/
 
 1. Clone the repository:
    ```bash
+   https://github.com/Vinay-ops/Password_Manager
 
 2. Open the project in Android Studio
 
@@ -144,4 +145,5 @@ View or manage saved credentials securely
 
 Vinay Bhogal
 Student Developer | Android App Development
+
 
