@@ -3,6 +3,7 @@ package com.example.passwordmanager;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,8 +43,8 @@ public class storageActivity2 extends AppCompatActivity {
             return insets;
         });
 
-        // saves password
-        sharedPreferences = getSharedPreferences("PasswordManager", MODE_PRIVATE);
+        String devId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        sharedPreferences = getSharedPreferences("PasswordManager_" + devId, MODE_PRIVATE);
 
 
         passwordsContainer = findViewById(R.id.passwordsContainer);

@@ -3,6 +3,7 @@ package com.example.passwordmanager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,9 +58,8 @@ public class StoreActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize SharedPreferences - this is where we store passwords
-        // "PasswordManager" is the name of our storage file
-        sharedPreferences = getSharedPreferences("PasswordManager", MODE_PRIVATE);
+        String devId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        sharedPreferences = getSharedPreferences("PasswordManager_" + devId, MODE_PRIVATE);
         
         // Get the current password count (how many passwords saved so far)
         passwordCount = sharedPreferences.getInt("password_count", 0);

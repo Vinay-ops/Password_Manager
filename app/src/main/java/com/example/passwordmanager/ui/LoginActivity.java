@@ -1,9 +1,11 @@
 package com.example.passwordmanager.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +18,12 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.passwordmanager.R;
 import com.example.passwordmanager.StoreActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.example.passwordmanager.data.database.db;
+import com.example.passwordmanager.data.dao.dao;
+import com.example.passwordmanager.data.entity.Pin;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * LoginActivity - Simple PIN login screen
@@ -30,6 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
     // Store the current PIN as user types
     private String currentPin = "";
+    private String storedPin = null;
+    private dao pinDao;
+    private final ExecutorService ioExecutor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,22 @@ public class LoginActivity extends AppCompatActivity {
         pinDot3 = findViewById(R.id.pinDot3);
         pinDot4 = findViewById(R.id.pinDot4);
         errorMessage = findViewById(R.id.errorMessage);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            pinInput.setAutofillHints((String[]) null);
+        }
+        pinInput.setTextIsSelectable(false);
+        pinInput.setPrivateImeOptions("disableDirectSuggestions=true");
+        pinInput.setSaveEnabled(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            pinInput.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
+        }
+
+        pinDao = db.getDatabase(getApplicationContext()).pinDao();
+        ioExecutor.execute(() -> {
+            String pin = pinDao.getPin();
+            storedPin = pin;
+        });
 
         // Listen for text changes in PIN input field
         pinInput.addTextChangedListener(new TextWatcher() {
@@ -119,15 +146,31 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Checks if the PIN is valid (4 digits)
-     * If valid, navigates to StoreActivity
+     * If no PIN set, saves this PIN for the device and navigates
      */
     private void checkPin() {
-        // Check if PIN has exactly 4 digits
-        if (currentPin.length() == 4) {
-            // PIN is valid - go to StoreActivity
+        if (currentPin.length() != 4) return;
+
+        if (storedPin == null) {
+            ioExecutor.execute(() -> {
+                pinDao.savePin(new Pin(currentPin));
+                storedPin = currentPin;
+                runOnUiThread(() -> {
+                    Intent intent = new Intent(LoginActivity.this, StoreActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+            });
+        } else if (currentPin.equals(storedPin)) {
             Intent intent = new Intent(LoginActivity.this, StoreActivity.class);
             startActivity(intent);
-            finish(); // Close this activity so user can't go back
+            finish();
+        } else {
+            errorMessage.setText("Incorrect PIN");
+            errorMessage.setVisibility(View.VISIBLE);
+            pinInput.setText("");
+            currentPin = "";
+            updatePinDots();
         }
     }
 }
