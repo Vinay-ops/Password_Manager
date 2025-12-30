@@ -65,6 +65,8 @@ Advanced security features like biometric login, encryption key management, and 
 - **Authentication:** PIN-based login  
 
 ---
+
+## 📂 Project Structure
  ```
 PasswordManager/
 ├── activities/
@@ -78,6 +80,22 @@ PasswordManager/
 ├── README.md
 └── AndroidManifest.xml
  ```
+
+---
+
+# 📸 App Screenshots
+
+### 🚀 Splash Screen
+![Splash Screen](screenshots/splash.png)
+
+### 🔢 PIN Login Screen
+![PIN Login Screen](screenshots/login.png)
+
+### 📂 Saved Passwords Screen
+![Saved Passwords Screen](screenshots/dashboard.png)
+
+### ➕ Add Password Screen
+![Add Password Screen](screenshots/add_password.png)
 
 ---
 
