@@ -139,7 +139,9 @@ View or manage saved credentials securely
 
 ⏱️ Auto-lock after inactivity
   
+---
+👤 Author
 
-
-## 📂 Project Structure
+Vinay Bhogal
+Student Developer | Android App Development
 
