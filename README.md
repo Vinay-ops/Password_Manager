@@ -1,6 +1,6 @@
 # 🔐 Password Manager App
 
-A simple and secure **Password Manager** application that allows users to safely store and manage their credentials using a **PIN-based login system**.
+A simple and secure **Password Manager** application that allows users to safely store and manage their credentials using an **8-digit PIN or Biometric (Fingerprint) login system**.
 
 The app focuses on ease of use while maintaining basic security principles for personal password storage.
 
@@ -8,10 +8,12 @@ The app focuses on ease of use while maintaining basic security principles for p
 
 ## 📱 App Flow Overview
 
-1. Splash Screen  
-2. PIN Login Screen  
-3. Dashboard (Saved Passwords)  
-4. Add New Password Screen  
+The application consists of **4 main screens**:
+
+1. **Splash Screen** ([MainActivity.java](file:///app/src/main/java/com/example/passwordmanager/MainActivity.java)) - Initial branding and transition.
+2. **Login Screen** ([LoginActivity.java](file:///app/src/main/java/com/example/passwordmanager/ui/LoginActivity.java)) - 8-digit PIN or Biometric (Fingerprint) authentication.
+3. **Add Password Screen** ([StoreActivity.java](file:///app/src/main/java/com/example/passwordmanager/StoreActivity.java)) - Form to save new credentials (Website, Username, Password).
+4. **Saved Passwords Screen** ([storageActivity2.java](file:///app/src/main/java/com/example/passwordmanager/storageActivity2.java)) - List view of all stored credentials with show/hide functionality.
 
 ---
 
@@ -21,10 +23,11 @@ The app focuses on ease of use while maintaining basic security principles for p
 - Displays app logo and branding  
 - Provides a smooth transition to the login screen  
 
-### 🔢 PIN Login Authentication
-- User logs in using a secure PIN  
+### 🔢 8-digit PIN & Biometric Authentication
+- User logs in using a secure 8-digit PIN
+- Optional biometric (fingerprint) login for faster access
 - Prevents unauthorized access to stored passwords  
-- PIN is validated before accessing any data  
+- Authentication is validated before accessing any data  
 
 ### ➕ Add Password Screen
 - Add credentials with:
@@ -47,35 +50,37 @@ The app focuses on ease of use while maintaining basic security principles for p
 ## 🛡️ Security Considerations
 
 - All data is stored locally on the device  
-- PIN is used to restrict access to the app  
+- 8-digit PIN or Biometric login is used to restrict access to the app  
 - Password fields are masked by default  
 - No internet or cloud storage involved  
 
 ⚠️ This app is intended for **learning and personal use**.  
-Advanced security features like biometric login, encryption key management, and cloud sync can be added in future versions.
+Advanced security features like AES encryption and cloud sync can be added in future versions.
 
 ---
 
 ## 🧰 Tech Stack
 
 - **Platform:** Android  
-- **Language:** Java / Kotlin  
+- **Language:** Java  
 - **UI:** XML layouts  
-- **Storage:** SharedPreferences / Local Database  
-- **Authentication:** PIN-based login  
+- **Storage:** Room Database  
+- **Authentication:** 8-digit PIN & Biometric (Fingerprint)  
 
 ---
 
 ## 📂 Project Structure
  ```
 PasswordManager/
-├── activities/
-│ ├── SplashActivity
-│ ├── PinLoginActivity
-│ ├── AddPasswordActivity
-│ └── PasswordListActivity
-├── models/
-├── utils/
+├── app/src/main/java/com/example/passwordmanager/
+│ ├── ui/
+│ │ └── LoginActivity
+│ ├── MainActivity
+│ ├── StoreActivity
+│ └── data/
+│     ├── database/
+│     ├── dao/
+│     └── entity/
 ├── res/
 ├── README.md
 └── AndroidManifest.xml
@@ -107,12 +112,13 @@ PasswordManager/
 1. Clone the repository:
    ```bash
     git clone https://github.com/Vinay-ops/Password_Manager
+   ```
 
 2. Open the project in Android Studio
 
 3. Build and run the app on an emulator or physical device
 
-4. Set your PIN on first launch
+4. Set your 8-digit PIN on first launch
 
 ---
 
@@ -120,7 +126,7 @@ PasswordManager/
 
 Launch the app
 
-Enter your PIN to unlock
+Enter your 8-digit PIN or use Fingerprint to unlock
 
 Add new passwords
 
@@ -129,8 +135,6 @@ View or manage saved credentials securely
 ---
 
 ## 🔮 Future Enhancements
-
-🔐 Fingerprint / Face ID login
 
 🔑 Strong encryption (AES)
 
