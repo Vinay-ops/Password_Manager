@@ -67,7 +67,7 @@ fun SplashScreen(onTimeout: () -> Unit) {
 
             // App Title
             Text(
-                text = "Vault",
+                text = "Vaultiq",
                 color = Color.White,
                 fontSize = 56.sp,
                 fontWeight = FontWeight.Black,

@@ -13,7 +13,11 @@ class storageActivity2 : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             VaultTheme {
-                StoredPasswordsScreen()
+                StoredPasswordsScreen(
+                    onBackClick = {
+                        finish()
+                    }
+                )
             }
         }
     }

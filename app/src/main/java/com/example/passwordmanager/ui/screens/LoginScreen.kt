@@ -62,7 +62,7 @@ fun LoginScreen(onSignInClick: () -> Unit) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Vault",
+                text = "Vaultiq",
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
@@ -101,10 +101,11 @@ fun LoginScreen(onSignInClick: () -> Unit) {
                         modifier = Modifier.fillMaxWidth(),
                         placeholder = { Text("name@company.com", color = Color.White.copy(alpha = 0.3f)) },
                         leadingIcon = { Icon(Icons.Default.Email, contentDescription = null, tint = Color.White.copy(alpha = 0.5f)) },
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = Color(0xFF1B1A35).copy(alpha = 0.5f),
-                            unfocusedBorderColor = Color.Transparent,
-                            focusedBorderColor = Color(0xFF6366F1)
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFF1B1A35).copy(alpha = 0.5f),
+                            unfocusedContainerColor = Color(0xFF1B1A35).copy(alpha = 0.5f),
+                            focusedBorderColor = Color(0xFF6366F1),
+                            unfocusedBorderColor = Color.Transparent
                         ),
                         shape = RoundedCornerShape(12.dp)
                     )
@@ -137,10 +138,11 @@ fun LoginScreen(onSignInClick: () -> Unit) {
                         visualTransformation = PasswordVisualTransformation(),
                         leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = Color.White.copy(alpha = 0.5f)) },
                         trailingIcon = { Icon(Icons.Default.Visibility, contentDescription = null, tint = Color.White.copy(alpha = 0.5f)) },
-                        colors = TextFieldDefaults.outlinedTextFieldColors(
-                            containerColor = Color(0xFF1B1A35).copy(alpha = 0.5f),
-                            unfocusedBorderColor = Color.Transparent,
-                            focusedBorderColor = Color(0xFF6366F1)
+                        colors = OutlinedTextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFF1B1A35).copy(alpha = 0.5f),
+                            unfocusedContainerColor = Color(0xFF1B1A35).copy(alpha = 0.5f),
+                            focusedBorderColor = Color(0xFF6366F1),
+                            unfocusedBorderColor = Color.Transparent
                         ),
                         shape = RoundedCornerShape(12.dp)
                     )

@@ -1,6 +1,6 @@
-# 🔐 Password Manager App
+# 🔐 Vaultiq App
 
-A simple and secure **Password Manager** application that allows users to safely store and manage their credentials using an **8-digit PIN or Biometric (Fingerprint) login system**.
+A simple and secure **Vaultiq** application that allows users to safely store and manage their credentials using an **8-digit PIN or Biometric (Fingerprint) login system**.
 
 The app focuses on ease of use while maintaining basic security principles for personal password storage.
 
@@ -111,7 +111,7 @@ PasswordManager/
 1. Launch the app and wait for core initialization.
 2. Enter your 8-digit PIN or use Biometric login.
 3. Access your Dashboard to view categories.
-4. Manage all passwords from the Vault screen.
+4. Manage all passwords from the Vaultiq screen.
 
 ---
 

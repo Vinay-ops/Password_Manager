@@ -1,5 +1,6 @@
 package com.example.passwordmanager
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,7 +14,11 @@ class StoreActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             VaultTheme {
-                DashboardScreen()
+                DashboardScreen(
+                    onNavigateToStored = {
+                        startActivity(Intent(this, storageActivity2::class.java))
+                    }
+                )
             }
         }
     }

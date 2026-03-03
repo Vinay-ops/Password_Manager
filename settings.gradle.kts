@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Password Manager"
+rootProject.name = "Vaultiq"
 include(":app")

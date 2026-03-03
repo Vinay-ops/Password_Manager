@@ -19,19 +19,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.passwordmanager.ui.theme.VaultTheme
+import com.example.passwordmanager.ui.components.BottomNavItem
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.passwordmanager.data.PasswordViewModel
+import com.example.passwordmanager.data.PasswordEntity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(
+    onNavigateToStored: () -> Unit = {},
+    passwordViewModel: PasswordViewModel = viewModel()
+) {
     val categories = listOf("Social", "Banking", "Work", "Shopping")
     var selectedCategory by remember { mutableStateOf("Social") }
     
-    val passwords = listOf(
-        PasswordItemData("Facebook", "••••••••", Color(0xFF3B82F6), "F"),
-        PasswordItemData("Instagram", "••••••••", Color(0xFFEC4899), "I"),
-        PasswordItemData("X (Twitter)", "••••••••", Color(0xFF1F2937), "X"),
-        PasswordItemData("LinkedIn", "••••••••", Color(0xFF2563EB), "L")
-    )
+    val passwordsFlow = remember(selectedCategory) {
+        passwordViewModel.getPasswordsByCategory(selectedCategory)
+    }
+    val passwords by passwordsFlow.collectAsState(initial = emptyList())
 
     Box(
         modifier = Modifier
@@ -52,18 +57,8 @@ fun DashboardScreen() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Surface(
-                        modifier = Modifier.size(48.dp),
-                        shape = CircleShape,
-                        color = Color.Gray
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Text("👤", fontSize = 24.sp)
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(12.dp))
                     Text(
-                        text = "Hello, Alex 👋",
+                        text = "Vaultiq",
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold
@@ -95,7 +90,7 @@ fun DashboardScreen() {
                 ) {
                     Icon(Icons.Default.Search, contentDescription = null, tint = Color.White.copy(alpha = 0.3f))
                     Spacer(modifier = Modifier.width(12.dp))
-                    Text("Search your vault...", color = Color.White.copy(alpha = 0.3f), fontSize = 16.sp)
+                    Text("Search Vaultiq...", color = Color.White.copy(alpha = 0.3f), fontSize = 16.sp)
                 }
             }
 
@@ -127,6 +122,25 @@ fun DashboardScreen() {
             }
 
             Spacer(modifier = Modifier.height(32.dp))
+
+            // Password List Header
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Recent Passwords",
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                TextButton(onClick = onNavigateToStored) {
+                    Text("See All", color = Color(0xFF6366F1))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             // Password List
             LazyColumn(
@@ -194,7 +208,7 @@ fun DashboardScreen() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                BottomNavItem("Vault", Icons.Default.Lock, true)
+                BottomNavItem("Vaultiq", Icons.Default.Lock, true)
                 BottomNavItem("Generator", Icons.Default.VpnKey, false)
                 BottomNavItem("Security", Icons.Default.Security, false)
                 BottomNavItem("Settings", Icons.Default.Settings, false)
@@ -204,9 +218,9 @@ fun DashboardScreen() {
 }
 
 @Composable
-fun PasswordItem(data: PasswordItemData) {
+fun PasswordItem(data: PasswordEntity) {
     Surface(
-        modifier = Modifier.fillMaxWidth().height(88.dp),
+        modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
         color = Color(0xFF1B1A35).copy(alpha = 0.4f),
         border = BorderStroke(1.dp, Color.White.copy(alpha = 0.05f))
@@ -217,61 +231,31 @@ fun PasswordItem(data: PasswordItemData) {
         ) {
             Surface(
                 modifier = Modifier.size(48.dp),
-                shape = CircleShape,
-                color = data.color.copy(alpha = 0.2f),
-                border = BorderStroke(1.dp, data.color.copy(alpha = 0.3f))
+                shape = RoundedCornerShape(12.dp),
+                color = Color(0xFF6366F1).copy(alpha = 0.1f)
             ) {
                 Box(contentAlignment = Alignment.Center) {
-                    Text(text = data.icon, color = data.color, fontWeight = FontWeight.Bold)
+                    Text(data.serviceName.take(1).uppercase(), color = Color(0xFF6366F1), fontWeight = FontWeight.Bold)
                 }
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(text = data.name, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                Text(text = data.password, color = Color.White.copy(alpha = 0.4f), fontSize = 14.sp)
+                Text(text = data.serviceName, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                Text(text = "••••••••", color = Color.White.copy(alpha = 0.4f), fontSize = 12.sp)
             }
-            Surface(
-                modifier = Modifier.size(40.dp),
-                shape = RoundedCornerShape(10.dp),
-                color = Color(0xFF1B1A35).copy(alpha = 0.5f),
-                onClick = { /* TODO */ }
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(Icons.Default.ContentCopy, contentDescription = null, tint = Color(0xFF6366F1), modifier = Modifier.size(20.dp))
-                }
-            }
+            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = Color.White.copy(alpha = 0.3f))
         }
     }
 }
 
-@Composable
-fun BottomNavItem(label: String, icon: androidx.compose.ui.graphics.vector.ImageVector, isSelected: Boolean) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Icon(
-            icon,
-            contentDescription = null,
-            tint = if (isSelected) Color(0xFF6366F1) else Color.White.copy(alpha = 0.3f),
-            modifier = Modifier.size(24.dp)
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = label,
-            color = if (isSelected) Color(0xFF6366F1) else Color.White.copy(alpha = 0.3f),
-            fontSize = 10.sp,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
-
-data class PasswordItemData(val name: String, val password: String, val color: Color, val icon: String)
 
 @Preview(showBackground = true)
 @Composable
 fun DashboardScreenPreview() {
     VaultTheme {
-        DashboardScreen()
+        // Dummy data for preview
+        Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
+            Text("Preview requires ViewModel mock", color = Color.White)
+        }
     }
 }

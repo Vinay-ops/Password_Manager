@@ -10,7 +10,7 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-// Vault Theme Colors
+// Vaultiq Theme Colors
 val VaultBgStart = Color(0xFF1E1B4B)
 val VaultBgEnd = Color(0xFF0A0A0A)
 val VaultAccent = Color(0xFF6366F1)

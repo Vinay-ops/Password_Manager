@@ -19,19 +19,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.passwordmanager.ui.theme.VaultTheme
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.passwordmanager.data.PasswordViewModel
+import com.example.passwordmanager.data.PasswordEntity
+import com.example.passwordmanager.ui.components.BottomNavItem
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StoredPasswordsScreen() {
+fun StoredPasswordsScreen(
+    onBackClick: () -> Unit = {},
+    passwordViewModel: PasswordViewModel = viewModel()
+) {
     val categories = listOf("All", "Social", "Banking", "Work")
     var selectedCategory by remember { mutableStateOf("All") }
+    var showAddDialog by remember { mutableStateOf(false) }
     
-    val passwords = listOf(
-        StoredPasswordData("Google", "alex.design@gmail....", "••••••", "WORK", Color(0xFF6366F1)),
-        StoredPasswordData("Netflix", "family_account@ne...", "•••••", "SOCIAL", Color(0xFFF97316)),
-        StoredPasswordData("Spotify P...", "music_lover_99", "••••", "SOCIAL", Color(0xFFF97316)),
-        StoredPasswordData("Chase ...", "ad_official_2024", "••••••••", "BANKING", Color(0xFF10B981)),
-        StoredPasswordData("Adobe Cl...", "alex_designs_01@a...", "••••", "WORK", Color(0xFF6366F1))
-    )
+    val passwordsFlow = remember(selectedCategory) {
+        if (selectedCategory == "All") passwordViewModel.allPasswords 
+        else passwordViewModel.getPasswordsByCategory(selectedCategory)
+    }
+    val passwords by passwordsFlow.collectAsState(initial = emptyList())
+    
+    // Form states
+    var newServiceName by remember { mutableStateOf("") }
+    var newUserName by remember { mutableStateOf("") }
+    var newPassword by remember { mutableStateOf("") }
+    var newCategory by remember { mutableStateOf("Social") }
 
     Box(
         modifier = Modifier
@@ -56,15 +69,16 @@ fun StoredPasswordsScreen() {
                         modifier = Modifier.size(40.dp),
                         shape = RoundedCornerShape(12.dp),
                         color = Color(0xFF1B1A35).copy(alpha = 0.5f),
-                        border = BorderStroke(1.dp, Color(0xFF6366F1).copy(alpha = 0.3f))
+                        border = BorderStroke(1.dp, Color(0xFF6366F1).copy(alpha = 0.3f)),
+                        onClick = onBackClick
                     ) {
                         Box(contentAlignment = Alignment.Center) {
-                            Text("🛡️", fontSize = 20.sp)
+                            Icon(Icons.Default.ArrowBack, contentDescription = null, tint = Color.White, modifier = Modifier.size(20.dp))
                         }
                     }
                     Spacer(modifier = Modifier.width(16.dp))
                     Text(
-                        text = "Vault",
+                        text = "Vaultiq",
                         color = Color.White,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
@@ -73,8 +87,8 @@ fun StoredPasswordsScreen() {
                 Surface(
                     modifier = Modifier.size(40.dp),
                     shape = RoundedCornerShape(12.dp),
-                    color = Color(0xFF1B1A35).copy(alpha = 0.5f),
-                    border = BorderStroke(1.dp, Color.White.copy(alpha = 0.1f))
+                    color = Color(0xFF6366F1),
+                    onClick = { showAddDialog = true }
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         Icon(Icons.Default.Add, contentDescription = null, tint = Color.White)
@@ -145,11 +159,79 @@ fun StoredPasswordsScreen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier.weight(1f)
             ) {
-                items(passwords) { item ->
+             items(passwords) { item ->
                     StoredPasswordItem(item)
                 }
-                item { Spacer(modifier = Modifier.height(100.dp)) }
             }
+        }
+
+        if (showAddDialog) {
+            AlertDialog(
+                onDismissRequest = { showAddDialog = false },
+                title = { Text("Add New Password", color = Color.White) },
+                containerColor = Color(0xFF1B1A35),
+                text = {
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        OutlinedTextField(
+                            value = newServiceName,
+                            onValueChange = { newServiceName = it },
+                            label = { Text("Service Name") },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = Color.White,
+                                unfocusedTextColor = Color.White
+                            )
+                        )
+                        OutlinedTextField(
+                            value = newUserName,
+                            onValueChange = { newUserName = it },
+                            label = { Text("Username / Email") },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = Color.White,
+                                unfocusedTextColor = Color.White
+                            )
+                        )
+                        OutlinedTextField(
+                            value = newPassword,
+                            onValueChange = { newPassword = it },
+                            label = { Text("Password") },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = Color.White,
+                                unfocusedTextColor = Color.White
+                            )
+                        )
+                    }
+                },
+                confirmButton = {
+                    Button(
+                        onClick = {
+                            if (newServiceName.isNotBlank() && newPassword.isNotBlank()) {
+                                passwordViewModel.addPassword(
+                                    PasswordEntity(
+                                        serviceName = newServiceName,
+                                        userName = newUserName,
+                                        passwordEncrypted = newPassword,
+                                        category = newCategory
+                                    )
+                                )
+                                showAddDialog = false
+                                newServiceName = ""
+                                newUserName = ""
+                                newPassword = ""
+                            }
+                        }
+                    ) {
+                        Text("Add")
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showAddDialog = false }) {
+                        Text("Cancel", color = Color.White.copy(alpha = 0.6f))
+                    }
+                }
+            )
         }
 
         // Bottom Bar
@@ -166,7 +248,7 @@ fun StoredPasswordsScreen() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                BottomNavItem("VAULT", Icons.Default.Lock, true)
+                BottomNavItem("Vaultiq", Icons.Default.Lock, true)
                 BottomNavItem("GENERATOR", Icons.Default.VpnKey, false)
                 BottomNavItem("AUDIT", Icons.Default.Security, false)
                 BottomNavItem("MENU", Icons.Default.Menu, false)
@@ -176,7 +258,7 @@ fun StoredPasswordsScreen() {
 }
 
 @Composable
-fun StoredPasswordItem(data: StoredPasswordData) {
+fun StoredPasswordItem(data: PasswordEntity) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
@@ -200,23 +282,23 @@ fun StoredPasswordItem(data: StoredPasswordData) {
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = data.name, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(text = data.serviceName, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.width(8.dp))
                     Surface(
                         shape = RoundedCornerShape(4.dp),
-                        color = data.tagColor.copy(alpha = 0.1f),
+                        color = Color(0xFF6366F1).copy(alpha = 0.1f),
                     ) {
                         Text(
-                            text = data.tag,
+                            text = data.category.uppercase(),
                             modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                            color = data.tagColor,
+                            color = Color(0xFF6366F1),
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold
                         )
                     }
                 }
-                Text(text = data.username, color = Color.White.copy(alpha = 0.4f), fontSize = 12.sp)
-                Text(text = data.password, color = Color.White.copy(alpha = 0.4f), fontSize = 12.sp)
+                Text(text = data.userName, color = Color.White.copy(alpha = 0.4f), fontSize = 12.sp)
+                Text(text = "••••••••", color = Color.White.copy(alpha = 0.4f), fontSize = 12.sp)
             }
             Row {
                 IconButton(onClick = { /* TODO */ }) {
@@ -230,12 +312,13 @@ fun StoredPasswordItem(data: StoredPasswordData) {
     }
 }
 
-data class StoredPasswordData(val name: String, val username: String, val password: String, val tag: String, val tagColor: Color)
-
 @Preview(showBackground = true)
 @Composable
 fun StoredPasswordsScreenPreview() {
     VaultTheme {
-        StoredPasswordsScreen()
+        // Dummy data for preview
+        Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
+            Text("Preview requires ViewModel mock", color = Color.White)
+        }
     }
 }
