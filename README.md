@@ -122,3 +122,8 @@ Student Developer | Android App Development
 
 ---
 
+## 📝 Changelog
+
+- 2026-03-03: Updated README with a changelog entry and pushed to remote.
+
+
