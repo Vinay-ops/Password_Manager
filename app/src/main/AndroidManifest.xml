@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PasswordManager">
+        android:theme="@style/Theme.Vault">
         <activity
             android:name=".storageActivity2"
             android:exported="false" />
